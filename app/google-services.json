@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "140324522576",
+    "firebase_url": "https://roomgroceries-5a7f3-default-rtdb.firebaseio.com",
+    "project_id": "roomgroceries-5a7f3",
+    "storage_bucket": "roomgroceries-5a7f3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:140324522576:android:8c6304860b7820f32f5f55",
+        "android_client_info": {
+          "package_name": "com.example.roomgroceries"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "140324522576-7ofih388opv89ckhgimgnkcuij06cgbh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuZY98mdYeB9BTKyp4wTHy4g4F101YbXU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "140324522576-7ofih388opv89ckhgimgnkcuij06cgbh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
