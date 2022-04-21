@@ -4,13 +4,13 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,9 +29,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -46,6 +43,8 @@ public class EmailAndPasswordRegisterActivity extends AppCompatActivity {
     private TextInputEditText userEmail, userPassword, userPAssword2, userName;
     private ProgressBar loadingProgress;
     private Button regBtn, signBtn;
+    private ImageView backBtn;
+    private TextView textView, signInText;
     FirebaseFirestore fStore;
     private FirebaseAuth mAuth;
     String userID;
@@ -61,20 +60,43 @@ public class EmailAndPasswordRegisterActivity extends AppCompatActivity {
         userName = findViewById(R.id.regName);
         loadingProgress = findViewById(R.id.regProgressBar);
         regBtn = findViewById(R.id.regBtn);
-//        signBtn = findViewById(R.id.sigBtn);
-//        signBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(EmailAndPasswordRegisterActivity.this, MainActivity.class);
-//                startActivity(intent);
-//            }
-//        });
 
         loadingProgress.setVisibility(View.INVISIBLE);
 
         mAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
 
+        // Navigate to the Sign In page
+
+        signInText = findViewById(R.id.signInText);
+        signInText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent firstActivity = new Intent(getApplicationContext(), EmailAndPasswordLoginActivity.class);
+                startActivity(firstActivity);
+            }
+        });
+        // Navigate back to the Home page
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent firstActivity = new Intent(getApplicationContext(), FirstActivity.class);
+                startActivity(firstActivity);
+
+            }
+        });
+        // Navigate back to the Home page
+        textView = findViewById(R.id.textView);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent firstActivity = new Intent(getApplicationContext(), FirstActivity.class);
+                startActivity(firstActivity);
+            }
+        });
+
+        // Registration
         regBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

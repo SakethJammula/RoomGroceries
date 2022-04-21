@@ -6,7 +6,9 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,8 +24,13 @@ public class ForgotPassword extends AppCompatActivity {
     private Button resetPasswordButton;
     private ProgressBar progressBar;
     private Intent ForgotPassword;
+    private ImageView backBtn;
+    private TextView textView;
 
     FirebaseAuth mAuth;
+
+    public ForgotPassword() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +42,26 @@ public class ForgotPassword extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         mAuth = FirebaseAuth.getInstance();
+
+        // Navigate back to the Home page
+        textView = findViewById(R.id.textView);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ForgotPassword.this,EmailAndPasswordLoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Navigate back to the Home page
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ForgotPassword.this,EmailAndPasswordLoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
         resetPasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override

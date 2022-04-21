@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,7 +28,8 @@ public class EmailAndPasswordLoginActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private String DummyEmail = "Dummy@gmail.com";
     private Intent HomeActivity, ForgotPasswordActivity;
-    private TextView logToRegBtn,resetText;
+    private TextView logToRegBtn,resetText, textView;
+    private ImageView backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +54,27 @@ public class EmailAndPasswordLoginActivity extends AppCompatActivity {
         HomeActivity = new Intent(this,MainActivity.class);
         ForgotPasswordActivity = new Intent(this, ForgotPassword.class);
 
+        // Navigate back to the Home page
+        textView = findViewById(R.id.textView);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EmailAndPasswordLoginActivity.this,FirstActivity.class);
+                startActivity(intent);
+            }
+        });
 
+        // Navigate back to the Home page
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EmailAndPasswordLoginActivity.this,FirstActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Change password
         resetText = (TextView) findViewById(R.id.reset_text);
         resetText.setOnClickListener(new View.OnClickListener() {
             @Override
