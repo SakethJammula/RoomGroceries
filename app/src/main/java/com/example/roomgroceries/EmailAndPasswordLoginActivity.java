@@ -24,8 +24,10 @@ public class EmailAndPasswordLoginActivity extends AppCompatActivity {
     private Button btnLogin;
     private ProgressBar loginProgress;
     private FirebaseAuth mAuth;
-    private Intent HomeActivity;
-    private TextView logToRegBtn;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private String DummyEmail = "Dummy@gmail.com";
+    private Intent HomeActivity, ForgotPasswordActivity;
+    private TextView logToRegBtn,resetText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +50,17 @@ public class EmailAndPasswordLoginActivity extends AppCompatActivity {
         loginProgress = findViewById(R.id.login_progress);
         mAuth = FirebaseAuth.getInstance();
         HomeActivity = new Intent(this,MainActivity.class);
+        ForgotPasswordActivity = new Intent(this, ForgotPassword.class);
 
+
+        resetText = (TextView) findViewById(R.id.reset_text);
+        resetText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(ForgotPasswordActivity);
+                finish();
+            }
+        });
 
 
         loginProgress.setVisibility(View.INVISIBLE);
@@ -78,6 +90,7 @@ public class EmailAndPasswordLoginActivity extends AppCompatActivity {
         });
     }
 
+
     private void signIn(String mail, String password) {
 
         mAuth.signInWithEmailAndPassword(mail,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -106,7 +119,6 @@ public class EmailAndPasswordLoginActivity extends AppCompatActivity {
     private void updateUI() {
         startActivity(HomeActivity);
         finish();
-
     }
 
     private void showMessage(String text) {

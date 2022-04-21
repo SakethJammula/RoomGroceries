@@ -5,9 +5,10 @@
       <map>
         <entry key="app/src/main/res/drawable/add_photo.xml" value="0.1" />
         <entry key="app/src/main/res/font/open_sans.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_email_and_password_login.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_email_and_password_login.xml" value="0.26051177978515627" />
         <entry key="app/src/main/res/layout/activity_email_and_password_register.xml" value="0.115625" />
         <entry key="app/src/main/res/layout/activity_first.xml" value="0.115625" />
+        <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.27601567021122686" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.115625" />
       </map>
     </option>
