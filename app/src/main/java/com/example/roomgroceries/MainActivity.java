@@ -2,44 +2,37 @@ package com.example.roomgroceries;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
-import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.Objects;
 
+public class MainActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
-    FirebaseUser currentUser ;
+    FirebaseUser currentUser;
+    TextView welcomeText;
+    Button newOrderButton;
+    Button viewHistoryButton;
+    final static String welcome = "Welcome ";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(Html.fromHtml("<font color=\"black\">"+getString(R.string.profile)+"</font>"));
-
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
 
-        userData();
-    }
-
-    public void userData() {
-
-        TextView userName = findViewById(R.id.userName);
-        TextView userEmail = findViewById(R.id.userEmail);
-
-        userName.setText(currentUser.getDisplayName());
-        userEmail.setText(currentUser.getEmail());
+        welcomeText = findViewById(R.id.textView2);
+        welcomeText.setText(welcome.concat(Objects.requireNonNull(currentUser.getDisplayName())));
+        newOrderButton = findViewById(R.id.button2);
+        viewHistoryButton = findViewById(R.id.button3);
     }
 
     public void logout(View view) {
