@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     Button newOrderButton;
     Button viewHistoryButton;
     final static String welcome = "Welcome ";
-    private final static String TAG = "RoomGroceries";
+    public final static String TAG = "RoomGroceries";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         newOrderButton.setOnClickListener(new OrderClickListener());
     }
 
-    private static class OrderClickListener implements View.OnClickListener {
+    private class OrderClickListener implements View.OnClickListener {
         private boolean isOrderInProgress = false;
 
         @Override
@@ -74,6 +74,9 @@ public class MainActivity extends AppCompatActivity {
                                 Log.d(TAG, "Added data successfully");
                             }
                         });
+
+                        Intent intent = new Intent(getApplicationContext(), AddItems.class);
+                        startActivity(intent);
                     } else {
                         Toast.makeText(view.getContext(),
                                 "Order already in progress.", Toast.LENGTH_SHORT).show();
