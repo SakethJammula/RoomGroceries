@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ public class OrderListFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedStateInstance) {
+        Log.d(MainActivity.TAG, "View Created");
         RecyclerView orderListRecycler = view.findViewById(R.id.recycler_view);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         orderListRecycler.setLayoutManager(layoutManager);
@@ -42,15 +44,18 @@ public class OrderListFragment extends Fragment {
         DatabaseReference myRef = database.getReference("orderlist");
 
         ArrayList<AddItem> itemList = new ArrayList<>();
+        ArrayList<String> itemKey = new ArrayList<>();
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
                     AddItem item = postSnapshot.getValue(AddItem.class);
                     itemList.add(item);
+                    itemKey.add(postSnapshot.getKey());
                 }
 
-                RecyclerView.Adapter<ProgressOrderRecycler.PurchasedItem> adapter = new ProgressOrderRecycler(itemList);
+                RecyclerView.Adapter<ProgressOrderRecycler.PurchasedItem> adapter =
+                        new ProgressOrderRecycler(itemList, orderListRecycler, itemKey);
                 orderListRecycler.setAdapter(adapter);
             }
 

@@ -4,6 +4,11 @@ public class AddItem {
     private final String itemName;
     private final String itemQuantity;
 
+    public AddItem() {
+        this.itemName = null;
+        this.itemQuantity = null;
+    }
+
     public AddItem(String itemName, String itemQuantity) {
         this.itemName = itemName;
         this.itemQuantity = itemQuantity;
