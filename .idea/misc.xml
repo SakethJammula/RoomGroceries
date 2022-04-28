@@ -11,13 +11,18 @@
         <entry key="..\:/Omkar-Docs/Mobile-Software-Development/Assignments/Project-5/RoomGroceries/app/src/main/res/layout/add_item.xml" value="0.21041666666666667" />
         <entry key="..\:/Omkar-Docs/Mobile-Software-Development/Assignments/Project-5/RoomGroceries/app/src/main/res/layout/add_items.xml" value="0.22447916666666667" />
         <entry key="..\:/Omkar-Docs/Mobile-Software-Development/Assignments/Project-5/RoomGroceries/app/src/main/res/layout/constraint.xml" value="0.22447916666666667" />
+        <entry key="..\:/Omkar-Docs/Mobile-Software-Development/Assignments/Project-5/RoomGroceries/app/src/main/res/layout/constraintlayout.xml" value="0.22447916666666667" />
         <entry key="..\:/Omkar-Docs/Mobile-Software-Development/Assignments/Project-5/RoomGroceries/app/src/main/res/layout/fragment_add_item.xml" value="0.22447916666666667" />
         <entry key="..\:/Omkar-Docs/Mobile-Software-Development/Assignments/Project-5/RoomGroceries/app/src/main/res/layout/fragment_add_item_and_add_to_cart.xml" value="0.22447916666666667" />
         <entry key="..\:/Omkar-Docs/Mobile-Software-Development/Assignments/Project-5/RoomGroceries/app/src/main/res/layout/fragment_add_item_cart.xml" value="0.25" />
         <entry key="..\:/Omkar-Docs/Mobile-Software-Development/Assignments/Project-5/RoomGroceries/app/src/main/res/layout/fragment_add_to_cart.xml" value="0.22447916666666667" />
         <entry key="..\:/Omkar-Docs/Mobile-Software-Development/Assignments/Project-5/RoomGroceries/app/src/main/res/layout/fragment_enter_item_quantity.xml" value="0.21041666666666667" />
         <entry key="..\:/Omkar-Docs/Mobile-Software-Development/Assignments/Project-5/RoomGroceries/app/src/main/res/layout/fragment_initial_add.xml" value="0.22447916666666667" />
+        <entry key="..\:/Omkar-Docs/Mobile-Software-Development/Assignments/Project-5/RoomGroceries/app/src/main/res/layout/fragment_order.xml" value="0.22447916666666667" />
+        <entry key="..\:/Omkar-Docs/Mobile-Software-Development/Assignments/Project-5/RoomGroceries/app/src/main/res/layout/fragment_order_list.xml" value="0.21041666666666667" />
+        <entry key="..\:/Omkar-Docs/Mobile-Software-Development/Assignments/Project-5/RoomGroceries/app/src/main/res/layout/fragment_purchased_order.xml" value="0.21041666666666667" />
         <entry key="..\:/Omkar-Docs/Mobile-Software-Development/Assignments/Project-5/RoomGroceries/app/src/main/res/layout/new_order.xml" value="0.22447916666666667" />
+        <entry key="..\:/Omkar-Docs/Mobile-Software-Development/Assignments/Project-5/RoomGroceries/app/src/main/res/layout/order_history.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/add_photo.xml" value="0.1" />
         <entry key="app/src/main/res/font/open_sans.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_email_and_password_login.xml" value="0.1" />
