@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,6 +22,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class PurchasedOrderFragment extends Fragment {
+    private static final String dollar = "$";
+    private static final String resetAmount = dollar + "0.00";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,5 +64,17 @@ public class PurchasedOrderFragment extends Fragment {
 
             }
         });
+
+        TextView displayAmount = view.findViewById(R.id.display_amount);
+        Button settle = view.findViewById(R.id.button4);
+
+        displayAmount.setText(dollar + "1.23");
+        settle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                displayAmount.setText(resetAmount);
+            }
+        });
+
     }
 }
