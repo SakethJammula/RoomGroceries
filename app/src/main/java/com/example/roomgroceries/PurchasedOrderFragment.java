@@ -12,7 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -46,7 +48,7 @@ public class PurchasedOrderFragment extends Fragment {
         DatabaseReference myRef = database.getReference("purchasedlist");
 
         ArrayList<AddItem> purchasedList = new ArrayList<>();
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
@@ -67,12 +69,34 @@ public class PurchasedOrderFragment extends Fragment {
 
         TextView displayAmount = view.findViewById(R.id.display_amount);
         Button settle = view.findViewById(R.id.button4);
+        final String[] totalCostKey = new String[1];
 
-        displayAmount.setText(dollar + "1.23");
+        DatabaseReference amountRef = database.getReference("totalcost");
+        amountRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot postSnapshot: snapshot.getChildren()) {
+                    AddItem.OrderCost amount = postSnapshot.getValue(AddItem.OrderCost.class);
+                    if (amount != null) {
+                        String amountToDisplay = String.valueOf(amount.totalCost);
+                        totalCostKey[0] = postSnapshot.getKey();
+                        displayAmount.setText(dollar.concat(amountToDisplay));
+                    } else {
+                        displayAmount.setText(resetAmount);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         settle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                displayAmount.setText(resetAmount);
+                amountRef.child(totalCostKey[0]).setValue(new AddItem.OrderCost(0.0f));
             }
         });
 

@@ -44,7 +44,7 @@ public class OrderListFragment extends Fragment {
 
         ArrayList<AddItem> itemList = new ArrayList<>();
         ArrayList<String> itemKey = new ArrayList<>();
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {

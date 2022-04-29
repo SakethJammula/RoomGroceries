@@ -21,4 +21,20 @@ public class AddItem {
     public String getItemQuantity() {
         return itemQuantity;
     }
+
+    public static class OrderCost {
+        float totalCost;
+
+        public OrderCost() {
+            this.totalCost = 0.0f;
+        }
+
+        public OrderCost(float totalCost) {
+            this.totalCost = totalCost;
+        }
+
+        public float getTotalCost() {
+            return totalCost;
+        }
+    }
 }
