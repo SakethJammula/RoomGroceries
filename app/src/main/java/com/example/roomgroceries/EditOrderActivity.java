@@ -6,9 +6,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -60,14 +62,39 @@ public class EditOrderActivity extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                String updatedQuantity = quantityView.getText().toString();
-//                AddItem updatedItem = new AddItem(itemName, updatedQuantity);
                 myRef.child(itemKey).removeValue();
 
-                Intent newIntent = new Intent();
-                newIntent.setClass(view.getContext(), ViewOrderHistory.class);
-                startActivity(newIntent);
+//                Intent newIntent = new Intent();
+//                newIntent.setClass(view.getContext(), ViewOrderHistory.class);
+//                startActivity(newIntent);
+
+                move_to_order_history(view);
             }
         });
+
+        purchaseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference("purchasedlist");
+                String updatedQuantity = quantityView.getText().toString();
+                AddItem updatedItem = new AddItem(itemName, updatedQuantity);
+
+                myRef.push().setValue(updatedItem).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(getApplicationContext(), "Item Purchased",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
+                move_to_order_history(view);
+            }
+        });
+    }
+
+    public static void move_to_order_history(View view) {
+        Intent newIntent = new Intent();
+        newIntent.setClass(view.getContext(), ViewOrderHistory.class);
+        view.getContext().startActivity(newIntent);
     }
 }

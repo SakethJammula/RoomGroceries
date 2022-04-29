@@ -35,7 +35,6 @@ public class OrderListFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedStateInstance) {
-        Log.d(MainActivity.TAG, "View Created");
         RecyclerView orderListRecycler = view.findViewById(R.id.recycler_view);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         orderListRecycler.setLayoutManager(layoutManager);

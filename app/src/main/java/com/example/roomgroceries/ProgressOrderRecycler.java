@@ -68,12 +68,4 @@ public class ProgressOrderRecycler extends RecyclerView.Adapter<ProgressOrderRec
             itemQuantity = itemView.findViewById(R.id.textView8);
         }
     }
-
-    public static ArrayList<AddItem> get_add_item_list() {
-        return itemList;
-    }
-
-    public static ArrayList<String> get_item_key_list() {
-        return itemKey;
-    }
 }
