@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,15 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class ProgressOrderRecycler extends RecyclerView.Adapter<ProgressOrderRecycler.PurchasedItem> {
-    private final ArrayList<AddItem> itemList;
-    public final ArrayList<String> itemKey;
+    private static ArrayList<AddItem> itemList = null;
+    private static ArrayList<String> itemKey = null;
     private final RecyclerView recyclerView;
 
     public ProgressOrderRecycler(ArrayList<AddItem> itemList, RecyclerView recyclerView,
                                  ArrayList<String> itemKey) {
-        this.itemList = itemList;
+        ProgressOrderRecycler.itemList = itemList;
         this.recyclerView = recyclerView;
-        this.itemKey = itemKey;
+        ProgressOrderRecycler.itemKey = itemKey;
     }
 
     @NonNull
@@ -37,6 +36,7 @@ public class ProgressOrderRecycler extends RecyclerView.Adapter<ProgressOrderRec
                 AddItem item = itemList.get(recyclerView.getChildAdapterPosition(view));
                 intent.putExtra("itemName", item.getItemName());
                 intent.putExtra("itemQuantity", item.getItemQuantity());
+                intent.putExtra("itemKey", itemKey.get(recyclerView.getChildAdapterPosition(view)));
                 intent.setClass(view.getContext(), EditOrderActivity.class);
                 view.getContext().startActivity(intent);
             }
@@ -67,5 +67,13 @@ public class ProgressOrderRecycler extends RecyclerView.Adapter<ProgressOrderRec
             itemName = itemView.findViewById(R.id.textView7);
             itemQuantity = itemView.findViewById(R.id.textView8);
         }
+    }
+
+    public static ArrayList<AddItem> get_add_item_list() {
+        return itemList;
+    }
+
+    public static ArrayList<String> get_item_key_list() {
+        return itemKey;
     }
 }

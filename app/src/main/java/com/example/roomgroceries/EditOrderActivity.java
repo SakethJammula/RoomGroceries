@@ -2,14 +2,15 @@ package com.example.roomgroceries;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class EditOrderActivity extends AppCompatActivity {
     private Button modifyButton;
@@ -17,8 +18,11 @@ public class EditOrderActivity extends AppCompatActivity {
     private Button deleteButton;
     private String itemName;
     private String itemQuantity;
+    private String itemKey;
     private TextView itemNameView;
     private EditText quantityView;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("orderlist");
 
     @Override
     public void onCreate(Bundle savedStateInstance) {
@@ -35,6 +39,7 @@ public class EditOrderActivity extends AppCompatActivity {
 
         itemName = intent.getStringExtra("itemName");
         itemQuantity = intent.getStringExtra("itemQuantity");
+        itemKey = intent.getStringExtra("itemKey");
 
         itemNameView.setText(itemName);
         quantityView.setText(itemQuantity);
@@ -42,7 +47,26 @@ public class EditOrderActivity extends AppCompatActivity {
         modifyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String updatedQuantity = quantityView.getText().toString();
+                AddItem updatedItem = new AddItem(itemName, updatedQuantity);
+                myRef.child(itemKey).setValue(updatedItem);
 
+                Intent newIntent = new Intent();
+                newIntent.setClass(view.getContext(), ViewOrderHistory.class);
+                startActivity(newIntent);
+            }
+        });
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                String updatedQuantity = quantityView.getText().toString();
+//                AddItem updatedItem = new AddItem(itemName, updatedQuantity);
+                myRef.child(itemKey).removeValue();
+
+                Intent newIntent = new Intent();
+                newIntent.setClass(view.getContext(), ViewOrderHistory.class);
+                startActivity(newIntent);
             }
         });
     }
