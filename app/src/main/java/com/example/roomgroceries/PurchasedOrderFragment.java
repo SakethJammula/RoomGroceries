@@ -44,10 +44,10 @@ public class PurchasedOrderFragment extends Fragment {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("purchasedlist");
 
-        ArrayList<AddItem> purchasedList = new ArrayList<>();
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ArrayList<AddItem> purchasedList = new ArrayList<>();
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
                     AddItem item = postSnapshot.getValue(AddItem.class);
                     purchasedList.add(item);
@@ -94,6 +94,7 @@ public class PurchasedOrderFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 amountRef.child(totalCostKey[0]).setValue(new AddItem.OrderCost(0.0f));
+                myRef.removeValue();
             }
         });
 
