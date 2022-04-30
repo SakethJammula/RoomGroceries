@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,11 +41,11 @@ public class OrderListFragment extends Fragment {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("orderlist");
 
-        ArrayList<AddItem> itemList = new ArrayList<>();
-        ArrayList<String> itemKey = new ArrayList<>();
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ArrayList<AddItem> itemList = new ArrayList<>();
+                ArrayList<String> itemKey = new ArrayList<>();
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
                     AddItem item = postSnapshot.getValue(AddItem.class);
                     itemList.add(item);
@@ -59,6 +60,16 @@ public class OrderListFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+        FloatingActionButton actionButton = view.findViewById(R.id.floatingActionButton);
+
+        actionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NewOrderDialog newOrder = new NewOrderDialog();
+                newOrder.show(getParentFragmentManager(), null);
             }
         });
 
