@@ -9,7 +9,6 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.tabs.TabLayout;
 
 public class ViewOrderHistory extends AppCompatActivity {
-    private TabLayout tabLayout;
     private ViewPager2 viewPager;
 
     @Override
@@ -17,7 +16,7 @@ public class ViewOrderHistory extends AppCompatActivity {
         super.onCreate(savedStateInstance);
         setContentView(R.layout.order_history);
 
-        tabLayout = findViewById(R.id.order_tab);
+        TabLayout tabLayout = findViewById(R.id.order_tab);
         viewPager = findViewById(R.id.view_pager);
 
         OrderTabAdapter orderTab = new OrderTabAdapter(this, tabLayout.getTabCount());
