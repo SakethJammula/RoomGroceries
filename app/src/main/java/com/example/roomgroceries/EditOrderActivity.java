@@ -15,9 +15,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class EditOrderActivity extends AppCompatActivity {
-    private String itemName;
-    private String itemKey;
-    private EditText quantityView;
+    static String itemKey;
+    static EditText quantityView;
+    static String itemName;
     static FirebaseDatabase database = FirebaseDatabase.getInstance();
     static DatabaseReference myRef = database.getReference("orderlist");
 
@@ -64,19 +64,8 @@ public class EditOrderActivity extends AppCompatActivity {
         purchaseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference newRef = database.getReference("purchasedlist");
-                String updatedQuantity = quantityView.getText().toString();
-                AddItem updatedItem = new AddItem(itemName, updatedQuantity);
-
-                newRef.push().setValue(updatedItem).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        Toast.makeText(getApplicationContext(), "Item Purchased",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                });
-                move_to_order_history(view, itemKey);
+                ItemPriceDialog newDialog = new ItemPriceDialog(itemName, view);
+                newDialog.show(getSupportFragmentManager(), null);
             }
         });
     }
@@ -86,5 +75,21 @@ public class EditOrderActivity extends AppCompatActivity {
         Intent newIntent = new Intent();
         newIntent.setClass(view.getContext(), ViewOrderHistory.class);
         view.getContext().startActivity(newIntent);
+    }
+
+    public static void update_purchase_list(View view) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference newRef = database.getReference("purchasedlist");
+        String updatedQuantity = quantityView.getText().toString();
+        AddItem updatedItem = new AddItem(itemName, updatedQuantity);
+
+        newRef.push().setValue(updatedItem).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(view.getContext(), "Item Purchased",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+        move_to_order_history(view, itemKey);
     }
 }
