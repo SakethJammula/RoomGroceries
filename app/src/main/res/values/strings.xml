@@ -13,4 +13,8 @@
     <string name="sign_up_using_email_and_password">Sign Up using Email and Password</string>
     <string name="description">Roommate Groceries Shopping App</string>
     <string name="or">Or</string>
+    <string name="cancel">Cancel</string>
+    <string name="Save">Save</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

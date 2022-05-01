@@ -35,6 +35,14 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".NewOrder"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ViewOrderHistory"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".EditOrderActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data
             android:name="preloaded_fonts"
