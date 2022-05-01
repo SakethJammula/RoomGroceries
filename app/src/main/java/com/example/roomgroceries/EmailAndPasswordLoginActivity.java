@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,8 +25,11 @@ public class EmailAndPasswordLoginActivity extends AppCompatActivity {
     private Button btnLogin;
     private ProgressBar loginProgress;
     private FirebaseAuth mAuth;
-    private Intent HomeActivity;
-    private TextView logToRegBtn;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private String DummyEmail = "Dummy@gmail.com";
+    private Intent HomeActivity, ForgotPasswordActivity;
+    private TextView logToRegBtn,resetText, textView;
+    private ImageView backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +52,37 @@ public class EmailAndPasswordLoginActivity extends AppCompatActivity {
         loginProgress = findViewById(R.id.login_progress);
         mAuth = FirebaseAuth.getInstance();
         HomeActivity = new Intent(this,MainActivity.class);
+        ForgotPasswordActivity = new Intent(this, ForgotPassword.class);
 
+        // Navigate back to the Home page
+        textView = findViewById(R.id.textView);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EmailAndPasswordLoginActivity.this,FirstActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Navigate back to the Home page
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EmailAndPasswordLoginActivity.this,FirstActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Change password
+        resetText = (TextView) findViewById(R.id.reset_text);
+        resetText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(ForgotPasswordActivity);
+                finish();
+            }
+        });
 
 
         loginProgress.setVisibility(View.INVISIBLE);
@@ -78,6 +112,7 @@ public class EmailAndPasswordLoginActivity extends AppCompatActivity {
         });
     }
 
+
     private void signIn(String mail, String password) {
 
         mAuth.signInWithEmailAndPassword(mail,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -106,7 +141,6 @@ public class EmailAndPasswordLoginActivity extends AppCompatActivity {
     private void updateUI() {
         startActivity(HomeActivity);
         finish();
-
     }
 
     private void showMessage(String text) {

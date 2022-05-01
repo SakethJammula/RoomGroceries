@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "140324522576",
-    "firebase_url": "https://roomgroceries-5a7f3-default-rtdb.firebaseio.com",
-    "project_id": "roomgroceries-5a7f3",
-    "storage_bucket": "roomgroceries-5a7f3.appspot.com"
+    "project_number": "154036078826",
+    "firebase_url": "https://roomgroceries-db7f9-default-rtdb.firebaseio.com",
+    "project_id": "roomgroceries-db7f9",
+    "storage_bucket": "roomgroceries-db7f9.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:140324522576:android:8c6304860b7820f32f5f55",
+        "mobilesdk_app_id": "1:154036078826:android:95ea9ef3e6cfd32bb8ef93",
         "android_client_info": {
           "package_name": "com.example.roomgroceries"
         }
       },
       "oauth_client": [
         {
-          "client_id": "140324522576-7ofih388opv89ckhgimgnkcuij06cgbh.apps.googleusercontent.com",
+          "client_id": "154036078826-l4dne6oimpgupv25kvhhvpulmlt01f8h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBuZY98mdYeB9BTKyp4wTHy4g4F101YbXU"
+          "current_key": "AIzaSyCtqO5SSF257sqdpxXv5os7r_b2XerCKrY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "140324522576-7ofih388opv89ckhgimgnkcuij06cgbh.apps.googleusercontent.com",
+              "client_id": "154036078826-l4dne6oimpgupv25kvhhvpulmlt01f8h.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
