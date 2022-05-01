@@ -28,9 +28,17 @@ public class PurchasedOrderRecycler extends RecyclerView.Adapter<PurchasedOrderR
     @Override
     public void onBindViewHolder(@NonNull PurchasedItem holder, int position) {
         AddItem item = purchasedList.get(position);
+        String quantity = "Qty: ";
+        String dollar = "$";
+
 
         holder.itemName.setText(item.getItemName());
-        holder.itemQuantity.setText(item.getItemQuantity());
+        holder.itemQuantity.setText(quantity.concat(item.getItemQuantity()));
+
+        if(item.getItemPrice() !=null){
+            holder.itemPrice.setText(dollar.concat(item.getItemPrice()));
+        }
+
     }
 
     @Override
@@ -41,12 +49,14 @@ public class PurchasedOrderRecycler extends RecyclerView.Adapter<PurchasedOrderR
     public static class PurchasedItem extends RecyclerView.ViewHolder {
         TextView itemName;
         TextView itemQuantity;
+        TextView itemPrice;
 
         public PurchasedItem(@NonNull View itemView) {
             super(itemView);
 
             itemName = itemView.findViewById(R.id.textView7);
             itemQuantity = itemView.findViewById(R.id.textView8);
+            itemPrice = itemView.findViewById(R.id.textView9);
         }
     }
 }

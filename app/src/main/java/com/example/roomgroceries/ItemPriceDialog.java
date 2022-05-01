@@ -79,7 +79,7 @@ public class ItemPriceDialog extends DialogFragment {
 
                         }
                     });
-                    EditOrderActivity.update_purchase_list(view);
+                    EditOrderActivity.update_purchase_list(view, amount);
                 }
             }
         });

@@ -52,7 +52,7 @@ public class NewOrderDialog extends DialogFragment {
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference myRef = database.getReference("orderlist");
 
-                AddItem addItem = new AddItem(itemName, quantity);
+                AddItem addItem = new AddItem(itemName, quantity, null);
 
                 myRef.push().setValue(addItem).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

@@ -3,6 +3,7 @@ package com.example.roomgroceries;
 import android.os.Bundle;
 import android.util.Log;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -15,6 +16,11 @@ public class ViewOrderHistory extends AppCompatActivity {
     public void onCreate(Bundle savedStateInstance) {
         super.onCreate(savedStateInstance);
         setContentView(R.layout.order_history);
+
+        ActionBar ab = getSupportActionBar();
+        ab.setTitle("View Order");
+        ab.setDisplayHomeAsUpEnabled(true);
+
 
         TabLayout tabLayout = findViewById(R.id.order_tab);
         viewPager = findViewById(R.id.view_pager);

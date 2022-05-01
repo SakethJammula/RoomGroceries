@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -41,11 +42,15 @@ public class EditOrderActivity extends AppCompatActivity {
         itemNameView.setText(itemName);
         quantityView.setText(itemQuantity);
 
+        ActionBar ab = getSupportActionBar();
+        ab.setTitle("Edit Order");
+        ab.setDisplayHomeAsUpEnabled(true);
+
         modifyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String updatedQuantity = quantityView.getText().toString();
-                AddItem updatedItem = new AddItem(itemName, updatedQuantity);
+                AddItem updatedItem = new AddItem(itemName, updatedQuantity, null);
                 myRef.child(itemKey).setValue(updatedItem);
 
                 Intent newIntent = new Intent();
@@ -77,11 +82,11 @@ public class EditOrderActivity extends AppCompatActivity {
         view.getContext().startActivity(newIntent);
     }
 
-    public static void update_purchase_list(View view) {
+    public static void update_purchase_list(View view, String itemPrice) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference newRef = database.getReference("purchasedlist");
         String updatedQuantity = quantityView.getText().toString();
-        AddItem updatedItem = new AddItem(itemName, updatedQuantity);
+        AddItem updatedItem = new AddItem(itemName, updatedQuantity, itemPrice);
 
         newRef.push().setValue(updatedItem).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override

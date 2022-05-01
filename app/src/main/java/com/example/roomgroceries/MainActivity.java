@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -22,10 +23,11 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
-    FirebaseUser currentUser;
+    FirebaseUser currentUser = null;
     TextView welcomeText;
     Button newOrderButton;
     Button viewHistoryButton;
+    Button viewParticipants;
     final static String welcome = "Welcome ";
     public final static String TAG = "RoomGroceries";
 
@@ -34,11 +36,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ActionBar ab = getSupportActionBar();
+        ab.setTitle("Welcome");
+        ab.setDisplayHomeAsUpEnabled(true);
+
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
+
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -60,13 +67,47 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        DatabaseReference users = database.getReference("users");
+        final boolean[] isUserNameAdded = {true};
+
+        users.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot postSnapshot: snapshot.getChildren()) {
+                    AddItem.Users addedUser = postSnapshot.getValue(AddItem.Users.class);
+
+                    if (addedUser.getUserName().equals(currentUser.getDisplayName())) {
+                        isUserNameAdded[0] = false;
+                        break;
+                    }
+                }
+
+                if (isUserNameAdded[0]) {
+                    AddItem.Users newUser = new AddItem.Users(currentUser.getDisplayName(), 0.0f);
+                    users.push().setValue(newUser).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         welcomeText = findViewById(R.id.textView2);
         welcomeText.setText(welcome.concat(Objects.requireNonNull(currentUser.getDisplayName())));
         newOrderButton = findViewById(R.id.button2);
         viewHistoryButton = findViewById(R.id.button3);
+        viewParticipants = findViewById(R.id.view_participants);
 
         newOrderButton.setOnClickListener(new OrderClickListener());
         viewHistoryButton.setOnClickListener(new ViewOrderClickListener());
+        viewParticipants.setOnClickListener(new ViewParticipants());
     }
 
     private class OrderClickListener implements View.OnClickListener {
@@ -81,6 +122,14 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             Intent intent = new Intent(view.getContext(), ViewOrderHistory.class);
+            startActivity(intent);
+        }
+    }
+
+    private class ViewParticipants implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(view.getContext(), Participants.class);
             startActivity(intent);
         }
     }

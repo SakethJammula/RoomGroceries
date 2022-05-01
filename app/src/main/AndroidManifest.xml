@@ -34,15 +34,18 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:parentActivityName="com.example.roomgroceries.FirstActivity"
+             />
         <activity android:name=".NewOrder"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:parentActivityName="com.example.roomgroceries.MainActivity"
+            />
         <activity android:name=".ViewOrderHistory"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:parentActivityName="com.example.roomgroceries.MainActivity"
+             />
         <activity android:name=".EditOrderActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:parentActivityName="com.example.roomgroceries.ViewOrderHistory" />
+        <activity android:name=".Participants"
+            android:parentActivityName="com.example.roomgroceries.ViewOrderHistory" />
 
         <meta-data
             android:name="preloaded_fonts"

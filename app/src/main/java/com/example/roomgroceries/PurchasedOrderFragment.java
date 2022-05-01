@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -69,15 +71,17 @@ public class PurchasedOrderFragment extends Fragment {
         final String[] totalCostKey = new String[1];
 
         DatabaseReference amountRef = database.getReference("totalcost");
+        final String[] amountToDisplay = new String[1];
+
         amountRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
                     AddItem.OrderCost amount = postSnapshot.getValue(AddItem.OrderCost.class);
                     if (amount != null) {
-                        String amountToDisplay = String.valueOf(amount.totalCost);
+                        amountToDisplay[0] = String.valueOf(amount.totalCost);
                         totalCostKey[0] = postSnapshot.getKey();
-                        displayAmount.setText(dollar.concat(amountToDisplay));
+                        displayAmount.setText(dollar.concat(amountToDisplay[0]));
                     } else {
                         displayAmount.setText(resetAmount);
                     }
@@ -93,10 +97,62 @@ public class PurchasedOrderFragment extends Fragment {
         settle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                amountRef.child(totalCostKey[0]).setValue(new AddItem.OrderCost(0.0f));
-                myRef.removeValue();
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference("users");
+                DatabaseReference purchasedRef = database.getReference("purchasedlist");
+                FirebaseAuth auth = FirebaseAuth.getInstance();
+
+                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot postSnapshot: snapshot.getChildren()) {
+                            AddItem.Users user = postSnapshot.getValue(AddItem.Users.class);
+                            if (auth.getCurrentUser().getDisplayName().equals(user.getUserName())) {
+                                get_current_amount_settled(user, myRef, purchasedRef, totalCostKey[0], postSnapshot.getKey());
+                                break;
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
 
+    }
+
+    public void get_current_amount_settled(AddItem.Users user, DatabaseReference myRef,
+                                           DatabaseReference purchasedRef, String key, String userKey) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference amountRef = database.getReference("totalcost");
+
+        amountRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot postSnapshot: snapshot.getChildren()) {
+                    AddItem.OrderCost amount = postSnapshot.getValue(AddItem.OrderCost.class);
+                    if (amount != null) {
+                        user.memberSpent += amount.totalCost;
+
+                        myRef.child(userKey).setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                amountRef.child(key).setValue(new AddItem.OrderCost(0.0f));
+                                purchasedRef.removeValue();
+                            }
+                        });
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

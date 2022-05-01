@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -33,6 +34,10 @@ public class NewOrder extends AppCompatActivity {
         logout = findViewById(R.id.button7);
         finalize = findViewById(R.id.button8);
 
+        ActionBar ab = getSupportActionBar();
+        ab.setTitle("New Order");
+        ab.setDisplayHomeAsUpEnabled(true);
+
         addItemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,7 +48,12 @@ public class NewOrder extends AppCompatActivity {
 
                 itemName = enterItems.getText().toString();
                 quantity = enterQuantity.getText().toString();
-                AddItem addItem = new AddItem(itemName, quantity);
+                if(itemName.length()==0 || quantity.length() == 0){
+                    Toast.makeText(getApplicationContext(), "Enter valid data!",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                AddItem addItem = new AddItem(itemName, quantity, null);
 
                 myRef.push().setValue(addItem).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
