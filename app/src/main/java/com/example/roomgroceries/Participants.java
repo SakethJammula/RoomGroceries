@@ -5,6 +5,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
@@ -21,6 +22,10 @@ public class Participants extends AppCompatActivity {
         super.onCreate(savedStateInstance);
 
         setContentView(R.layout.participants);
+
+        ActionBar ab = getSupportActionBar();
+        ab.setTitle("Participants");
+        ab.setDisplayHomeAsUpEnabled(true);
 
         TextView title = new TextView(getApplicationContext());
         LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);

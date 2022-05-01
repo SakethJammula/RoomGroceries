@@ -105,9 +105,6 @@ public class EmailAndPasswordLoginActivity extends AppCompatActivity {
                     signIn(mail,password);
                 }
 
-
-
-
             }
         });
     }
