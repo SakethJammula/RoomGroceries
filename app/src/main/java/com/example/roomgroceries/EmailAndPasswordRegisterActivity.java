@@ -49,6 +49,10 @@ public class EmailAndPasswordRegisterActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     String userID;
 
+    /**
+     * To display registration page
+     * @param savedInstanceState Saves the current state instance of the app
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

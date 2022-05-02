@@ -12,6 +12,10 @@ import com.google.android.material.tabs.TabLayout;
 public class ViewOrderHistory extends AppCompatActivity {
     private ViewPager2 viewPager;
 
+    /**
+     * ViewPager to display the items in progress and items already purchased
+     * @param savedStateInstance Saves the current state instance of the app
+     */
     @Override
     public void onCreate(Bundle savedStateInstance) {
         super.onCreate(savedStateInstance);

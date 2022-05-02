@@ -32,6 +32,10 @@ public class ForgotPassword extends AppCompatActivity {
     public ForgotPassword() {
     }
 
+    /**
+     * Page to handle the Forgot Password
+     * @param savedInstanceState Saves the current state instance of the app
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

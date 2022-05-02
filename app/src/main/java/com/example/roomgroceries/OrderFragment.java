@@ -1,30 +1,29 @@
 package com.example.roomgroceries;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
+import androidx.fragment.app.Fragment;
 
 public class OrderFragment extends Fragment {
+    /**
+     * Create the Fragment Instance
+     * @param savedInstanceState Saves the current state instance of the app
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+    /**
+     * Inflate the fragment to display the order in the order list
+     * @param inflater inflates the fragment
+     * @param container holds the fragment
+     * @param savedInstanceState Saves the current state instance of the app
+     * @return current inflated view
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

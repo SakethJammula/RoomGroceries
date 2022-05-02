@@ -14,6 +14,10 @@ public class FirstActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseUser currentUser ;
 
+    /**
+     * Navigating to the corresponding sign in or sign up page from the main page
+     * @param savedInstanceState Saves the current state instance of the app
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

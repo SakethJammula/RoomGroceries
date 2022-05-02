@@ -31,6 +31,10 @@ public class EmailAndPasswordLoginActivity extends AppCompatActivity {
     private TextView logToRegBtn,resetText, textView;
     private ImageView backBtn;
 
+    /**
+     * To display login page
+     * @param savedInstanceState Saves the current state instance of the app
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -17,6 +17,13 @@ public class PurchasedOrderRecycler extends RecyclerView.Adapter<PurchasedOrderR
         this.purchasedList = purchasedList;
     }
 
+
+    /**
+     * Display the list of items on the RecyclerView on the Purchase tab
+     * @param parent parentView
+     * @param viewType type of view
+     * @return instance of the class PurchasedItem
+     */
     @NonNull
     @Override
     public PurchasedItem onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -25,6 +32,11 @@ public class PurchasedOrderRecycler extends RecyclerView.Adapter<PurchasedOrderR
         return new PurchasedItem(view);
     }
 
+    /**
+     * Display the item in the corresponding index on the RecyclerView
+     * @param holder PurchasedItem
+     * @param position position of the view on the RecyclerView
+     */
     @Override
     public void onBindViewHolder(@NonNull PurchasedItem holder, int position) {
         AddItem item = purchasedList.get(position);

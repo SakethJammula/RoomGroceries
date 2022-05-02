@@ -31,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
     final static String welcome = "Welcome ";
     public final static String TAG = "RoomGroceries";
 
+    /**
+     * Method invoked upon MainActivity is called
+     * @param savedInstanceState Saves the current state instance of the app
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +51,10 @@ public class MainActivity extends AppCompatActivity {
         DatabaseReference myRef = database.getReference();
 
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            /**
+             * Add Key "totalcost" to the firebase if not present
+             * @param snapshot entry of the totalcost into the firebase
+             */
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (!snapshot.hasChild("totalcost")) {
@@ -71,6 +79,10 @@ public class MainActivity extends AppCompatActivity {
         final boolean[] isUserNameAdded = {true};
 
         users.addListenerForSingleValueEvent(new ValueEventListener() {
+            /**
+             * Checks for duplicate entry of the user in the firebase
+             * @param snapshot entry in the firebase of the users
+             */
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {

@@ -15,6 +15,11 @@ public class OrderTabAdapter extends FragmentStateAdapter {
         this.totalTabSize = totalTabSize;
     }
 
+    /**
+     * Display the tab layout with ViewPager2
+     * @param position tab index
+     * @return the fragment
+     */
     @NonNull
     @Override
     public Fragment createFragment(int position) {

@@ -22,6 +22,10 @@ public class NewOrder extends AppCompatActivity {
     Button logout;
     Button finalize;
 
+    /**
+     * Accepting the orders and finalising the items to purchase
+     * @param savedStateInstance Saves the current state instance of the app
+     */
     @Override
     public void onCreate(Bundle savedStateInstance) {
         super.onCreate(savedStateInstance);

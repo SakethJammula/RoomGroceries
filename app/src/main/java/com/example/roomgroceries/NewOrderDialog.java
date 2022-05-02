@@ -23,6 +23,11 @@ public class NewOrderDialog extends DialogFragment {
     EditText newItem;
     EditText newItemQuantity;
 
+    /**
+     * Accept orders after clicking the Floating Action button through a Dialog
+     * @param savedInstanceState Saves the current state instance of the app
+     * @return created Dialog
+     */
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {

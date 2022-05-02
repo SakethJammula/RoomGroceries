@@ -1,5 +1,8 @@
 package com.example.roomgroceries;
 
+/**
+ * This class holds the attributes of the item with its name, quantity and price
+ */
 public class AddItem {
     private final String itemName;
     private final String itemQuantity;
@@ -29,6 +32,9 @@ public class AddItem {
         return itemPrice;
     }
 
+    /**
+     * This class maintains the total cost of an order
+     */
     public static class OrderCost {
         float totalCost;
 
@@ -45,6 +51,9 @@ public class AddItem {
         }
     }
 
+    /**
+     * Class to maintain the records of the users participating in the purchase
+     */
     public static class Users {
         String userName;
         float memberSpent;

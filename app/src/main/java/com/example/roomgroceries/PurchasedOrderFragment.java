@@ -25,11 +25,22 @@ import java.util.ArrayList;
 public class PurchasedOrderFragment extends Fragment {
     private static final String dollar = "$";
     private static final String resetAmount = dollar + "0.00";
+
+    /**
+     * @param savedInstanceState Saves the current state instance of the app
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+    /**
+     * Inflate the layout on the activity
+     * @param inflater inflates the fragment
+     * @param container holds the fragment
+     * @param savedInstanceState Saves the current state instance of the app
+     * @return current inflated view
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -37,6 +48,11 @@ public class PurchasedOrderFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_purchased_order, container, false);
     }
 
+    /**
+     * Display the item purchased in the Purchase list RecyclerView
+     * @param view current view of the app
+     * @param savedStateInstance Saves the current state instance of the app
+     */
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedStateInstance) {
         RecyclerView purchasedRecycler = view.findViewById(R.id.purchase_recycler_view);
@@ -124,6 +140,14 @@ public class PurchasedOrderFragment extends Fragment {
 
     }
 
+    /**
+     * Get the amount spent by each user
+     * @param user the current user
+     * @param myRef DatabaseReference holding the amount
+     * @param purchasedRef DatabaseReference holding purchase list items
+     * @param key index corresponding to the value
+     * @param userKey index corresponding to the user
+     */
     public void get_current_amount_settled(AddItem.Users user, DatabaseReference myRef,
                                            DatabaseReference purchasedRef, String key, String userKey) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();

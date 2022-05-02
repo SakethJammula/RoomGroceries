@@ -1,7 +1,6 @@
 package com.example.roomgroceries;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +23,12 @@ public class ProgressOrderRecycler extends RecyclerView.Adapter<ProgressOrderRec
         ProgressOrderRecycler.itemKey = itemKey;
     }
 
+    /**
+     * Display the list of items on the RecyclerView on the Progress tab
+     * @param parent parentView
+     * @param viewType type of view
+     * @return instance of the class PurchasedItem
+     */
     @NonNull
     @Override
     public PurchasedItem onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -44,6 +49,11 @@ public class ProgressOrderRecycler extends RecyclerView.Adapter<ProgressOrderRec
         return new PurchasedItem(view);
     }
 
+    /**
+     * Display the item in the corresponding index on the RecyclerView
+     * @param holder PurchasedItem
+     * @param position position of the view on the RecyclerView
+     */
     @Override
     public void onBindViewHolder(@NonNull PurchasedItem holder, int position) {
         AddItem item = itemList.get(position);

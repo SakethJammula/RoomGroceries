@@ -20,11 +20,22 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class OrderListFragment extends Fragment {
+    /**
+     * Create the Fragment Instance
+     * @param savedInstanceState Saves the current state instance of the app
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+    /**
+     * Inflate the fragment to display the order in the order list
+     * @param inflater inflates the fragment
+     * @param container holds the fragment
+     * @param savedInstanceState Saves the current state instance of the app
+     * @return current inflated view
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -32,6 +43,11 @@ public class OrderListFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_order_list, container, false);
     }
 
+    /**
+     * Display the item added in the Progress order list
+     * @param view current view of the app
+     * @param savedStateInstance Saves the current state instance of the app
+     */
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedStateInstance) {
         RecyclerView orderListRecycler = view.findViewById(R.id.recycler_view);

@@ -17,6 +17,10 @@ import com.google.firebase.database.ValueEventListener;
 public class Participants extends AppCompatActivity {
     private LinearLayout verticalLayout;
 
+    /**
+     * Inflate the layout and display the participants and the money spent
+     * @param savedStateInstance Saves the current state instance of the app
+     */
     @Override
     public void onCreate(Bundle savedStateInstance) {
         super.onCreate(savedStateInstance);

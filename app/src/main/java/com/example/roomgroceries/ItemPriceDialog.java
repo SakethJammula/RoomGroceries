@@ -34,6 +34,11 @@ public class ItemPriceDialog extends DialogFragment {
         this.view = view;
     }
 
+    /**
+     * Dialog to accept price of the item on purchase
+     * @param savedInstanceState Saves the current state instance of the app
+     * @return created Dialog
+     */
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
